@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EegMonitor.MainPage"
+             Title="EEG Monitor">
+
+    <Grid RowDefinitions="Auto,*,Auto,*" Padding="10" RowSpacing="10">
+        <!-- Controls -->
+        <HorizontalStackLayout Grid.Row="0" Spacing="10">
+            <Button x:Name="StartStopButton" 
+                    Text="Start" 
+                    Clicked="OnStartStopClicked"
+                    WidthRequest="100" />
+
+            <Label x:Name="StatusLabel" 
+                   Text="Stopped" 
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0" />
+        </HorizontalStackLayout>
+
+        <!-- Raw EEG Data Display -->
+        <VerticalStackLayout Grid.Row="1" Spacing="5">
+            <Label Text="Raw EEG Data" 
+                   FontSize="18" 
+                   FontAttributes="Bold" />
+
+            <Border StrokeThickness="1"
+                    Stroke="Gray"
+                    StrokeShape="RoundRectangle 5,5,5,5">
+                <GraphicsView x:Name="RawDataGraphicsView" 
+                             HeightRequest="150"
+                             Margin="5" />
+            </Border>
+
+            <Label x:Name="RawValueLabel" 
+                   Text="Current Value: 0.0" />
+        </VerticalStackLayout>
+
+        <!-- Frequency Bands Header -->
+        <Label Grid.Row="2" 
+               Text="Brain Wave Power (10 * log10(V^2) )" 
+               FontSize="18" 
+               FontAttributes="Bold" />
+
+        <!-- Frequency Bands Display -->
+        <Grid Grid.Row="3" 
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="Auto,*,Auto">
+
+            <!-- Delta -->
+            <Label Grid.Row="0" Grid.Column="0" 
+                   Text="Delta (1-4 Hz):" 
+                   VerticalOptions="Center" />
+            <ProgressBar Grid.Row="0" Grid.Column="1" 
+                         x:Name="DeltaProgressBar" 
+                         Progress="0" 
+                         VerticalOptions="Center" />
+            <Label Grid.Row="0" Grid.Column="2" 
+                   x:Name="DeltaValueLabel" 
+                   Text="0.0" 
+                   VerticalOptions="Center" 
+                   Margin="5,0,0,0" />
+
+            <!-- Theta -->
+            <Label Grid.Row="1" Grid.Column="0" 
+                   Text="Theta (4-8 Hz):" 
+                   VerticalOptions="Center" />
+            <ProgressBar Grid.Row="1" Grid.Column="1" 
+                         x:Name="ThetaProgressBar" 
+                         Progress="0" 
+                         VerticalOptions="Center" />
+            <Label Grid.Row="1" Grid.Column="2" 
+                   x:Name="ThetaValueLabel" 
+                   Text="0.0" 
+                   VerticalOptions="Center" 
+                   Margin="5,0,0,0" />
+
+            <!-- Alpha -->
+            <Label Grid.Row="2" Grid.Column="0" 
+                   Text="Alpha (8-13 Hz):" 
+                   VerticalOptions="Center" />
+            <ProgressBar Grid.Row="2" Grid.Column="1" 
+                         x:Name="AlphaProgressBar" 
+                         Progress="0" 
+                         VerticalOptions="Center" />
+            <Label Grid.Row="2" Grid.Column="2" 
+                   x:Name="AlphaValueLabel" 
+                   Text="0.0" 
+                   VerticalOptions="Center" 
+                   Margin="5,0,0,0" />
+
+            <!-- Beta -->
+            <Label Grid.Row="3" Grid.Column="0" 
+                   Text="Beta (13-30 Hz):" 
+                   VerticalOptions="Center" />
+            <ProgressBar Grid.Row="3" Grid.Column="1" 
+                         x:Name="BetaProgressBar" 
+                         Progress="0" 
+                         VerticalOptions="Center" />
+            <Label Grid.Row="3" Grid.Column="2" 
+                   x:Name="BetaValueLabel" 
+                   Text="0.0" 
+                   VerticalOptions="Center" 
+                   Margin="5,0,0,0" />
+
+            <!-- Gamma -->
+            <Label Grid.Row="4" Grid.Column="0" 
+                   Text="Gamma (30+ Hz):" 
+                   VerticalOptions="Center" />
+            <ProgressBar Grid.Row="4" Grid.Column="1" 
+                         x:Name="GammaProgressBar" 
+                         Progress="0" 
+                         VerticalOptions="Center" />
+            <Label Grid.Row="4" Grid.Column="2" 
+                   x:Name="GammaValueLabel" 
+                   Text="0.0" 
+                   VerticalOptions="Center" 
+                   Margin="5,0,0,0" />
+        </Grid>
+    </Grid>
+</ContentPage>
